@@ -10,6 +10,11 @@ var getRepoIssues = function(repo) {
             response.json().then(function(data) {
                 // pass response data to dom function
                 displayIssues(data);
+
+                // check if api has paginated issues
+                if (response.headers.get("Link")) {
+                    console.log("repo has more than 30 issues");
+                }
             });
         }
         else {
